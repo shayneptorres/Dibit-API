@@ -1,23 +1,23 @@
 import mongoose from "mongoose";
 import { Router } from "express";
 import User from "../data_models/user";
-import bodyParser from "bodyParser";
-import passort from "passport";
+import passport from "passport";
 import config from "../config";
-
-import { authenticate } from "../middleware/authmiddleware";
 
 export default ({ config, db }) => {
     let api = Router();
     // '/v1/signUp/'
 
     api.post("/", (req,res) => {
-        User.register(new User({username: req.body.email}), req.body.password, function(err,user){
+        User.register(new User({
+            username: req.body.email
+        }), req.body.password,
+         function(err,user){
             if (err){
                 res.send(err);
             }
 
-            passort.authenticate(
+            passport.authenticate(
                 "local",{
                     session:false
             })(req, res, () => {

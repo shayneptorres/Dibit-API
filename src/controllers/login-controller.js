@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import { Router } from "express";
 import User from "../data_models/user";
-import bodyParser from "bodyParser";
+import bodyParser from "body-Parser";
 import passport from "passport";
-import config from "config";
+import config from "../config";
 
 import { generateAccessToken, respond, authenticate} from "../middleware/authmiddleware";
 
@@ -17,4 +17,6 @@ export default ({ config, db }) => {
             "scope":[]
         }), generateAccessToken, respond
     );
+
+    return api;
 }
