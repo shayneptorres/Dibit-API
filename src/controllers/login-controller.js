@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import { Router } from "express";
 import User from "../data_models/user";
 import bodyParser from "body-Parser";

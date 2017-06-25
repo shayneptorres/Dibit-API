@@ -11,6 +11,6 @@ export default ({ config, db }) => {
     let api = Router();
 
 
-    // '/v1/user/'
+    // '/v1/user'
     return api;
 }
