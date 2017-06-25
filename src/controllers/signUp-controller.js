@@ -1,20 +1,18 @@
 import mongoose from "mongoose";
 import { Router } from "express";
-import Account from "../data_models/account";
+import User from "../data_models/user";
 import bodyParser from "bodyParser";
 import passort from "passport";
 import config from "../config";
 
-import { generateAccessToken, respond, authenticate } from "../middleware/authmiddleware";
+import { authenticate } from "../middleware/authmiddleware";
 
 export default ({ config, db }) => {
     let api = Router();
+    // '/v1/signUp/'
 
-
-    // '/v1/account/'
-
-    api.post("/register", (req,res) => {
-        Account.register(new Account({username: req.body.email}), req.body.password, function(err,account){
+    api.post("/", (req,res) => {
+        User.register(new User({username: req.body.email}), req.body.password, function(err,user){
             if (err){
                 res.send(err);
             }
@@ -23,7 +21,10 @@ export default ({ config, db }) => {
                 "local",{
                     session:false
             })(req, res, () => {
-                res.status(200).send("YAY!");
+                res.status(200).send({
+                    "data":user,
+                    "message":"You successfully created a user!"
+                });
             });
         });
     });

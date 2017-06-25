@@ -21,15 +21,15 @@ app.use(bodyParser.json({
 
 // Passport config
 app.use(passport.initialize());
-let Account = require("./data_models/account");
+let User = require("./data_models/user");
 passport.use(new LocalStrategy({
     usernameField: "email",
     passwordField: "password"
 },
-    Account.authenticate()
+    User.authenticate()
 ))
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // API routes v1
 app.use("/v1",routes);
