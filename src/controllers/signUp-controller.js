@@ -10,10 +10,7 @@ export default ({ config, db }) => {
 
     api.post("/", (req,res) => {
         User.register(new User({
-            username: req.body.email,
-            dibs:[],
-            groups:[],
-            groupRequests:[]
+            username: req.body.email
         }), req.body.password,
          function(err,user){
             if (err){
