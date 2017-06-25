@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 let Schema = mongoose.Schema;
 
-let Dib = new Dib({
+let Dib = new Schema({
     name: String,
     desc: String,
     createdAt: Date,
